@@ -3,7 +3,8 @@ node_js:
   - 'stable'
 
 script:
-  - npm test
+  - npm build
+  - npm start:prod
 
 deploy:
   provider: heroku
