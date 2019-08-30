@@ -12,6 +12,7 @@ deploy:
   strategy: git
   app:
     master: nest-plate
-  run: -npm run build
+  run:
+    - npm run build
 after_deploy:
   - npm run start:prod
