@@ -3,8 +3,7 @@ node_js:
   - 'stable'
 
 script:
-  - npm build
-  - npm start:prod
+  - npm test
 
 deploy:
   provider: heroku
@@ -13,3 +12,6 @@ deploy:
   strategy: git
   app:
     master: nest-plate
+  run:
+    - npm run build
+    - npm run start:prod
