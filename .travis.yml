@@ -13,6 +13,7 @@ deploy:
   app:
     master: nest-plate
   run:
+    - npm install
     - npm run build
 after_deploy:
   - npm run start:prod
