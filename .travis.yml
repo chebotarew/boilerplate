@@ -11,4 +11,4 @@ deploy:
     secure: $he
   strategy: git
   app:
-    master: nest-plate
+    master: api-nodejs-course
