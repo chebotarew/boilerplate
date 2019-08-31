@@ -1,4 +1,4 @@
 {
   "locationDEV": "http://localhost:3000",
-  "locationProd": "https://api-nodejs-course.herokuapp.com"
+  "locationProd": "https://nest-plate.herokuapp.com"
 }
