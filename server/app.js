@@ -17,11 +17,11 @@ app.use(logger('dev'));
 
 require('./models');
 
-app.use( express.static(path.join(__dirname, 'assets'), { maxAge: 31557600000 }));
+app.use( express.static(path.join(__dirname, '../static'), { maxAge: 31557600000 }));
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use( bodyParser.json() )
+app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
   resave: true,
@@ -50,14 +50,14 @@ app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.disable('x-powered-by');
 app.use('/', Router)
-app.use('*', (req, res) => res.sendFile(path.join(__dirname+'/../client/build/index.html')));
+app.use('*', (req, res) => res.sendFile(path.join(__dirname+'/../static/index.html')));
 
 
 
 app.use((req, res, next) => {
   res
     .status(404)
-    .json({ err: '404', message: 'Use api on routes /api/v1.0/cats' });
+    .json({ err: '404', message: 'no found this route' });
 });
 
 app.use((err, req, res, next) => {

@@ -1,16 +1,8 @@
 
 const express = require('express')
+const CatRouter = require('./api/v1.0/cats')
 const router = express.Router()
-const CatRouter = express.Router()
 
 router.use('/cat', CatRouter)
-
-CatRouter.get('/', (req, res) => {
-    res.send(' GET Cats')
-})
-
-CatRouter.post('/', (req, res) => {
-    res.send(' POST Cats')
-})
 
 module.exports = router

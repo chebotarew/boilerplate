@@ -12,3 +12,5 @@ deploy:
   strategy: git
   app:
     master: nest-plate
+  run:
+    - npm run fron:build
