@@ -13,4 +13,4 @@ deploy:
   app:
     master: nest-plate
   run:
-    - npm run fron:build
+    - npm run front:build

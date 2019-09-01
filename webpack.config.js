@@ -42,9 +42,7 @@ module.exports = {
 					{ loader: 'raw-loader' },
 					{
 						loader: 'pug-html-loader',
-						query: {
-							data: { version: pckg.version },
-						},
+						
 					},
 				],
 				exclude: /node_modules/,
