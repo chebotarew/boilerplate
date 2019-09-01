@@ -16,8 +16,8 @@ app.use(compression());
 app.use(logger('dev'));
 
 require('./models');
-
-app.use( express.static(path.join(__dirname, '../client/static'), { maxAge: 31557600000 }));
+console.log(path.join(__dirname, 'static'))
+app.use( express.static(path.join(__dirname, 'static'), { maxAge: 31557600000 }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.text());
@@ -50,8 +50,7 @@ app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.disable('x-powered-by');
 app.use('/', Router)
-console.log(__dirname)
-app.use('*', (req, res) => res.sendFile(path.join(__dirname+'/../client/static/index.html')));
+app.use('*', (req, res) => res.sendFile(__dirname+'/static/index.html'));
 
 
 
