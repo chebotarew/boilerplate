@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --exit",
     "start": "node server/app.js",
-    "sev": "nodemon --exec node server/app.js",
+    "dev": "nodemon --exec node server/app.js",
     "front:dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 webpack-dev-server --open --inline --local",
     "front:build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=production webpack --config webpack.config.js"
   },
