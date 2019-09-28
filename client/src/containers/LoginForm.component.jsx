@@ -13,7 +13,8 @@ export class LoginForm extends React.PureComponent {
 	}
 
 	handleClick = () => {
-		const { action } = this.props
+		const { action, hideLogin } = this.props
+		hideLogin()
 		action(this.state)
 	}
 	render() {

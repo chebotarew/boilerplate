@@ -5,11 +5,9 @@ import image1 from '../../assets/img/image_1.png'
 import image2 from '../../assets/img/image_2.png'
 import image3 from '../../assets/img/image_3.png'
 
-const { SubMenu } = Menu
-const { Header, Content, Footer, Sider } = Layout
-
 export class StartPageComponent extends React.PureComponent {
 	render() {
+		const { openLogin } = this.props
 		return (
 			<div>
 				<Row className="centered-text main-content-row" type="flex" align="middle">
@@ -19,7 +17,9 @@ export class StartPageComponent extends React.PureComponent {
 							Сервис для организации, визуализации и анализа данных городских сетей. Принимайте
 							эффективные решения на основе точных данных!
 						</p>
-						{/* <Button type="primary">Helo</Button> */}
+						<Button type="primary" onClick={openLogin}>
+							Начать работу
+						</Button>
 					</Col>
 					<Col xs={24} xl={12} className="map-container">
 						<MapContainer />
@@ -50,7 +50,7 @@ export class StartPageComponent extends React.PureComponent {
 								<li> Обеспечение требуемого уровня информационной безопасности</li>
 							</ul>
 						</Col>
-						<Col offset={1} xs={24} xl={7} className="text-column">
+						<Col xs={24} xl={7} className="text-column">
 							<img src={image2} className="main-img" />
 							<h3 className="main-h3">Для исполнителей</h3>
 							<ul className="main-ul">
@@ -67,7 +67,7 @@ export class StartPageComponent extends React.PureComponent {
 								<li> Формирование отчетов в 1 клик</li>
 							</ul>
 						</Col>
-						<Col offset={1} xs={24} xl={7} className="text-column">
+						<Col xs={24} xl={7} className="text-column">
 							<img src={image3} className="main-img" />
 							<h3 className="main-h3">Для потребителей</h3>
 							<ul className="main-ul">

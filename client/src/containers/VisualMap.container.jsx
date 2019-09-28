@@ -98,6 +98,7 @@ class SimpleHereMap extends React.Component {
 		this.platform = new window.H.service.Platform({
 			app_id: 'UdRH6PlISTlADYsW6mzl',
 			app_code: 'lfrrTheP9nBedeJyy1NtIA',
+			useHTTPS: true,
 		})
 
 		var pixelRatio = window.devicePixelRatio || 1

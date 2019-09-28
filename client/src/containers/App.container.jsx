@@ -15,21 +15,33 @@ const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout
 
 class App extends React.PureComponent {
+	state = {
+		isOpen: false,
+	}
+
+	openLogin = () => this.setState({ isOpen: true })
+	hideLogin = () => this.setState({ isOpen: false })
+
 	render() {
 		const { user } = this.props
+		const { isOpen } = this.state
 
 		return (
 			<Layout>
-				<HeaderContainer />
+				<HeaderContainer openLogin={this.openLogin} hideLogin={this.hideLogin} isOpen={isOpen} />
 				<Content>
 					<Layout className="root-layout">
 						<Content className="root-content">
-							{!user && <StartPageComponent />}
+							{!user && <StartPageComponent openLogin={this.openLogin} />}
 							{user && (
 								<Switch>
-									<Route path="/" exact component={StartPageComponent} />
+									<Route
+										path="/"
+										exact
+										component={() => <StartPageComponent openLogin={this.openLogin} />}
+									/>
 									<Route path={FrontUrls.cabinet} exact component={CabinetContainer} />
-									<Route path={FrontUrls.analitic} exact component={CabinetContainer} />
+									{/* <Route path={FrontUrls.analitic} exact component={CabinetContainer} /> */}
 									<Route path={FrontUrls.visual} exact component={VisualMapContainer} />
 								</Switch>
 							)}

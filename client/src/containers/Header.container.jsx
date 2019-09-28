@@ -32,7 +32,7 @@ class HeaderComponent extends React.PureComponent {
 	}
 
 	render() {
-		const { isAuth, register, login, logout } = this.props
+		const { isAuth, register, login, logout, openLogin, hideLogin, isOpen } = this.props
 		return (
 			<Header className="header">
 				<div className="menu">
@@ -47,8 +47,10 @@ class HeaderComponent extends React.PureComponent {
 					<div>
 						<Popover
 							placement="bottomLeft"
-							trigger="click"
-							content={<LoginForm btnTitle="Войти" action={login} />}
+							trigger="hover"
+							visible={isOpen}
+							onClick={openLogin}
+							content={<LoginForm btnTitle="Войти" action={login} hideLogin={hideLogin} />}
 						>
 							<Button type="link"> Вход</Button>
 						</Popover>
