@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import { FrontUrls } from '../constants/FrontUrls.constant'
-import { Layout, Menu, Button, Icon, Row, Col } from 'antd'
-;('antd')
+import { Layout, Menu, Button, Icon, Row, Col, Modal } from 'antd'
+import { AddObjectModalComponent } from './AddObjectModal.component'
 const e = React.createElement
 
 class SimpleHereMap extends React.Component {
@@ -15,6 +15,7 @@ class SimpleHereMap extends React.Component {
 		this.eventListener
 		this.state = {
 			geo: [],
+			showAddEl: false,
 		}
 	}
 	componentDidMount() {
@@ -53,6 +54,7 @@ class SimpleHereMap extends React.Component {
 				geo: [...state.geo, coordinates],
 			}))
 			this.drawLine(this.state.geo)
+			this.success()
 		})
 		// this.mapGroup = new window.H.map.Group()
 		// const line = new window.H.geo.LineString()
@@ -154,9 +156,26 @@ class SimpleHereMap extends React.Component {
 		return role === 'company' || role === 'city' || role === 'region'
 	}
 
+	showModal = () => this.setState({ showAddEl: true })
+	hideModal = () => this.setState({ showAddEl: false })
+
+	success = () => {
+		Modal.success({
+			title: 'Добавьте объект',
+			content: <AddObjectModalComponent />,
+		})
+	}
+
 	render() {
+		const { showAddEl } = this.state
 		return (
 			<div>
+				{/* <Modal
+					visible={showAddEl}
+					title="Добавьте объект"
+					onCancel={this.hideModal}
+					content={AddObjectModalComponent}
+				></Modal> */}
 				<div id="here-map" style={{ width: '100%', height: '100vh', background: 'grey' }} />
 			</div>
 		)
@@ -167,9 +186,7 @@ const mapStateToProps = (state /*, ownProps*/) => {
 	return {}
 }
 
-const mapDispatchToProps = dispatch => ({
-	testAction: () => dispatch(testAction(1)),
-})
+const mapDispatchToProps = dispatch => ({})
 
 export const VisualMapContainer = connect(
 	mapStateToProps,

@@ -22,8 +22,11 @@ class HeaderComponent extends React.PureComponent {
 		}
 	}
 	componentDidUpdate(props) {
-		if (props.user) {
+		if (this.props.user) {
 			history.push(FrontUrls.cabinet)
+		}
+		if (!this.props.user) {
+			history.push('/')
 		}
 	}
 
