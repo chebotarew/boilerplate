@@ -7,10 +7,14 @@ import { sagas } from '../sagas/index.saga'
 const sagaMiddleware = createSagaMiddleware()
 
 export const configureStore = () => {
-	const middlewares = compose(
-		applyMiddleware(sagaMiddleware),
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-	)
+	let devTools = null;
+	if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+		devTools = process.env.NODE_ENV === 'development'  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : null
+	}
+	const middlewares = devTools ? compose(
+		applyMiddleware(sagaMiddleware),devTools
+	) : compose(applyMiddleware(sagaMiddleware) )
+
 	const store = createStore(reducers, initialState, middlewares)
 	sagaMiddleware.run(sagas)
 	return store
