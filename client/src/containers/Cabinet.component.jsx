@@ -4,12 +4,10 @@ import * as _ from 'lodash'
 import { Link } from 'react-router-dom'
 import { Line } from 'react-chartjs-2'
 import { FrontUrls } from '../constants/FrontUrls.constant'
-import { CabinetComponent } from './Cabinet.component'
-import { VisualMapContainer } from './VisualMap.container'
-import { User } from './User.component'
-import { Row, Col, Tabs } from 'antd'
+import { Row, Col, Menu } from 'antd'
 import { getUserSelector } from '../selectors/auth.selector'
-import { history } from '../utils/history'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { VisualMapContainer } from './VisualMap.container'
 
 export class Cabinet extends React.PureComponent {
 	getGraphicData = data => {
@@ -108,21 +106,21 @@ export class Cabinet extends React.PureComponent {
 			],
 		}
 		return (
-			<Row className="main-container">
-				<User user={user} />
-				{!this.hasAccsess() && (
-					<Col span={19} className="cabinet-block">
-						<Tabs defaultActiveKey="1">
-							<Tabs.TabPane tab="Аналитика" key="1">
-								<CabinetComponent />
-							</Tabs.TabPane>
-							<Tabs.TabPane tab="Графика" key="2">
-								<VisualMapContainer />
-							</Tabs.TabPane>
-						</Tabs>
-					</Col>
-				)}
-			</Row>
+			<div>
+				<Line
+					width={100}
+					height={30}
+					data={this.getGraphicData(data)}
+					options={this.getGraphicOptions(data)}
+				/>
+
+				<Line
+					width={100}
+					height={30}
+					data={this.getGraphicData(data1)}
+					options={this.getGraphicOptions(data1)}
+				/>
+			</div>
 		)
 	}
 }
@@ -135,7 +133,7 @@ const mapStateToProps = (state /*, ownProps*/) => {
 
 const mapDispatchToProps = dispatch => ({})
 
-export const CabinetContainer = connect(
+export const CabinetComponent = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Cabinet)

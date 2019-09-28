@@ -8,14 +8,6 @@ const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout
 
 export class LoginForm extends React.PureComponent {
-	constructor(props) {
-		super(props)
-		this.state = {
-			login: '',
-			password: '',
-		}
-	}
-
 	handleInput = field => event => {
 		this.setState({ [field]: event.target.value })
 	}

@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { registerAction, loginAction } from '../actions/auth.actions'
+import { registerAction, loginAction, logoutAction } from '../actions/auth.actions'
 import { isAuthSelector } from '../selectors/auth.selector'
 import logo from '../../assets/img/logo.png'
 import { LoginForm } from './LoginForm.component'
 import { FrontUrls } from '../constants/FrontUrls.constant'
+import { history } from '../utils/history'
 
 import { Layout, Menu, Button, Icon, Popover } from 'antd'
 
@@ -20,16 +21,21 @@ class HeaderComponent extends React.PureComponent {
 			registerFormShow: false,
 		}
 	}
+	componentDidUpdate(props) {
+		if (props.user) {
+			history.push(FrontUrls.cabinet)
+		}
+	}
 
 	render() {
-		const { isAuth, register, login } = this.props
+		const { isAuth, register, login, logout } = this.props
 		return (
 			<Header className="header">
 				<div className="menu">
 					<Link to={FrontUrls.cabinet}>
 						<img src={logo} className="logo" />
 					</Link>
-					{isAuth && (
+					{/* {isAuth && (
 						<Menu
 							theme="dark"
 							mode="horizontal"
@@ -42,7 +48,7 @@ class HeaderComponent extends React.PureComponent {
 							<Menu.Item key="2">nav 2</Menu.Item>
 							<Menu.Item key="3">nav 3</Menu.Item>
 						</Menu>
-					)}
+					)} */}
 				</div>
 				{!isAuth && (
 					<div>
@@ -64,7 +70,9 @@ class HeaderComponent extends React.PureComponent {
 				)}
 				{isAuth && (
 					<div>
-						<Button type="link"> Выход</Button>
+						<Button type="link" onClick={logout}>
+							Выход
+						</Button>
 					</div>
 				)}
 			</Header>
@@ -80,7 +88,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
 	register: data => dispatch(registerAction(data)),
-	login: ({ login, password }) => dispatch(loginAction({ login, password })),
+	login: data => dispatch(loginAction(data)),
+	logout: () => dispatch(logoutAction()),
 })
 
 export const HeaderContainer = connect(

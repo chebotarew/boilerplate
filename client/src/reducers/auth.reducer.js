@@ -13,6 +13,11 @@ const red = handleActions(
 			isAuthorized: true,
 			user: action.payload,
 		}),
+		[ActionTypes.auth.logout]: (state, action) => ({
+			...state,
+			isAuthorized: false,
+			user: null,
+		}),
 	},
 	initialState
 )

@@ -1,3 +1,4 @@
 export const urls = {
-	login: '/auth/singUp',
+	register: '/auth/singUp',
+	login: '/auth/singIn',
 }

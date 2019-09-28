@@ -66,6 +66,7 @@
 		"express-session": "^1.16.2",
 		"express-status-monitor": "^1.2.6",
 		"helmet": "^3.20.1",
+		"history": "^4.10.1",
 		"jwt-simple": "^0.5.5",
 		"lodash": "^4.17.15",
 		"lusca": "^1.6.1",
