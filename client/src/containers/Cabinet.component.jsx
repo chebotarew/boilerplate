@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { VisualMapContainer } from './VisualMap.container'
 
 const data3 = {
-	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август'],
 	datasets: [
 		{
 			label: 'Потребление тепловой энергии',
@@ -19,28 +19,28 @@ const data3 = {
 			borderWidth: 1,
 			hoverBackgroundColor: 'rgba(255,99,132,0.4)',
 			hoverBorderColor: 'rgba(255,99,132,1)',
-			data: [65, 59, 80, 81, 56, 55, 40],
+			data: [65, 59, 80, 81, 56, 55, 40, 22],
 		},
 	],
 }
 
 const data4 = {
-	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август'],
 	datasets: [
 		{
-			label: 'My First dataset',
+			label: 'Потребление интернета',
 			backgroundColor: 'rgba(255,99,132,0.2)',
 			borderColor: 'rgba(255,99,132,1)',
 			borderWidth: 1,
 			hoverBackgroundColor: 'rgba(255,99,132,0.4)',
 			hoverBorderColor: 'rgba(255,99,132,1)',
-			data: [11, 23, 12, 54, 56, 55, 40],
+			data: [11, 23, 12, 54, 56, 55, 40, 76],
 		},
 	],
 }
 
 const data5 = {
-	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август'],
 	datasets: [
 		{
 			label: 'Потребление электричества',
@@ -49,7 +49,7 @@ const data5 = {
 			borderWidth: 1,
 			hoverBackgroundColor: 'rgba(189, 118, 255,0.4)',
 			hoverBorderColor: 'rgba(189, 118, 255,1)',
-			data: [24, 43, 54, 12, 37, 43, 40],
+			data: [24, 43, 54, 12, 37, 43, 40, 12],
 		},
 	],
 }
@@ -153,8 +153,8 @@ export class Cabinet extends React.PureComponent {
 		return (
 			<div>
 				<Row>
-					<Col span={12}>
-						<Col style={{ width: '300px' }}>
+					<Col xs={24} xl={12}>
+						<Col style={{ maxWidth: '300px' }}>
 							<Line
 								width={50}
 								height={30}
@@ -162,7 +162,7 @@ export class Cabinet extends React.PureComponent {
 								options={this.getGraphicOptions(data)}
 							/>
 						</Col>
-						<Col style={{ width: '300px' }}>
+						<Col style={{ maxWidth: '300px' }}>
 							<HorizontalBar
 								data={data3}
 								width={50}
@@ -173,8 +173,8 @@ export class Cabinet extends React.PureComponent {
 							/>
 						</Col>
 					</Col>
-					<Col span={12}>
-						<Col style={{ width: '300px' }}>
+					<Col xs={24} xl={12}>
+						<Col style={{ maxWidth: '300px' }}>
 							<Line
 								width={50}
 								height={30}
@@ -182,7 +182,7 @@ export class Cabinet extends React.PureComponent {
 								options={this.getGraphicOptions(data1)}
 							/>
 						</Col>
-						<Col style={{ width: '300px' }}>
+						<Col style={{ maxWidth: '300px' }}>
 							<HorizontalBar
 								data={data5}
 								width={50}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu, Row, Col } from 'antd'
+import { Layout, Menu, Row, Col, Button } from 'antd'
 import { MapContainer } from './Map.container'
 import image1 from '../../assets/img/image_1.png'
 import image2 from '../../assets/img/image_2.png'
@@ -10,25 +10,25 @@ const { Header, Content, Footer, Sider } = Layout
 
 export class StartPageComponent extends React.PureComponent {
 	render() {
-		const { user } = this.props
 		return (
 			<div>
 				<Row className="centered-text main-content-row" type="flex" align="middle">
-					<Col span={12}>
+					<Col xs={24} xl={12}>
 						<h2 className="main-title">Цифровая платформа</h2>
 						<p className="main-text">
 							Сервис для организации, визуализации и анализа данных городских сетей. Принимайте
 							эффективные решения на основе точных данных!
 						</p>
+						{/* <Button type="primary">Helo</Button> */}
 					</Col>
-					<Col span={12} className="map-container">
+					<Col xs={24} xl={12} className="map-container">
 						<MapContainer />
 					</Col>
 					<Col span={24}>
 						<h2 className="main-title">Преимущества сервиса</h2>
 					</Col>
-					<Row>
-						<Col span={7}>
+					<Row type="flex" justify="center">
+						<Col xs={24} xl={7} className="text-column">
 							<img src={image1} className="main-img" />
 							<h3 className="main-h3">Для руководителей</h3>
 							<ul className="main-ul">
@@ -48,7 +48,7 @@ export class StartPageComponent extends React.PureComponent {
 								<li> Обеспечение требуемого уровня информационной безопасности</li>
 							</ul>
 						</Col>
-						<Col offset={1} span={7}>
+						<Col offset={1} xs={24} xl={7} className="text-column">
 							<img src={image2} className="main-img" />
 							<h3 className="main-h3">Для исполнителей</h3>
 							<ul className="main-ul">
@@ -65,7 +65,7 @@ export class StartPageComponent extends React.PureComponent {
 								<li> Формирование отчетов в 1 клик</li>
 							</ul>
 						</Col>
-						<Col offset={1} span={7}>
+						<Col offset={1} xs={24} xl={7} className="text-column">
 							<img src={image3} className="main-img" />
 							<h3 className="main-h3">Для потребителей</h3>
 							<ul className="main-ul">

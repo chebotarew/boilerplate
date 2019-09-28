@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import { Layout, Menu, Button, Icon } from 'antd'
+import { Layout, Menu, Button, Icon, Row, Col } from 'antd'
 import { HeaderContainer } from './Header.container'
 import { VisualMapContainer } from './VisualMap.container'
 import { CabinetContainer } from './Cabinet.container'
@@ -36,7 +36,20 @@ class App extends React.PureComponent {
 						</Content>
 					</Layout>
 				</Content>
-				<Footer className="root-footer">Лучший сайт по ЖКХ</Footer>
+				<Footer className="root-footer">
+					<Row type="flex" justify="space-between">
+						<Col xs={24} xl={4}>
+							info@digicom.ru
+						</Col>
+						<Col xs={24} xl={6}>
+							<p className="footer-text">ООО "Цифровые коммуникации"</p>
+							<p className="footer-text">ОГРН 5178171073340</p>
+						</Col>
+						<Col xs={24} xl={4}>
+							8-800-80-80-800
+						</Col>
+					</Row>
+				</Footer>
 			</Layout>
 		)
 	}

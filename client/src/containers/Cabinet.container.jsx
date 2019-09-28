@@ -7,7 +7,7 @@ import { FrontUrls } from '../constants/FrontUrls.constant'
 import { CabinetComponent } from './Cabinet.component'
 import { VisualMapContainer } from './VisualMap.container'
 import { User } from './User.component'
-import { Row, Col, Tabs } from 'antd'
+import { Row, Col, Tabs, Button } from 'antd'
 import { getUserSelector } from '../selectors/auth.selector'
 import { history } from '../utils/history'
 
@@ -111,16 +111,18 @@ export class Cabinet extends React.PureComponent {
 			<Row className="main-container">
 				<User user={user} />
 				{!this.hasAccsess() && (
-					<Col span={19} className="cabinet-block">
-						<Tabs defaultActiveKey="1">
-							<Tabs.TabPane tab="Аналитика" key="1">
-								<CabinetComponent />
-							</Tabs.TabPane>
-							<Tabs.TabPane tab="Карта ресурсов" key="2">
-								<VisualMapContainer />
-							</Tabs.TabPane>
-						</Tabs>
-					</Col>
+					<div>
+						<Col xs={24} xl={19} className="cabinet-block">
+							<Tabs defaultActiveKey="1">
+								<Tabs.TabPane tab="Аналитика" key="1">
+									<CabinetComponent />
+								</Tabs.TabPane>
+								<Tabs.TabPane tab="Карта ресурсов" key="2">
+									<VisualMapContainer />
+								</Tabs.TabPane>
+							</Tabs>
+						</Col>
+					</div>
 				)}
 			</Row>
 		)

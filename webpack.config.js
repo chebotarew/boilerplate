@@ -60,6 +60,9 @@ module.exports = {
 						loader: 'less-loader',
 						options: {
 							javascriptEnabled: true,
+							modifyVars: {
+								'primary-color': 'rgba(32, 139, 120, 0.98)',
+							},
 						}, // compiles Less to CSS
 					},
 				],

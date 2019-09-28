@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Row, Col } from 'antd'
 import { registerAction, loginAction, logoutAction } from '../actions/auth.actions'
 import { isAuthSelector } from '../selectors/auth.selector'
 import logo from '../../assets/img/logo.png'
@@ -35,24 +36,13 @@ class HeaderComponent extends React.PureComponent {
 		return (
 			<Header className="header">
 				<div className="menu">
-					<Link to={FrontUrls.cabinet}>
-						<img src={logo} className="logo" />
+					<Link to="/cabinet">
+						<Col span={24}>
+							<img src={logo} className="logo" />
+						</Col>
 					</Link>
-					{/* {isAuth && (
-						<Menu
-							theme="dark"
-							mode="horizontal"
-							defaultSelectedKeys={['2']}
-							style={{ lineHeight: '64px' }}
-						>
-							<Menu.Item key="1">
-								<Link to="/second">Second</Link>
-							</Menu.Item>
-							<Menu.Item key="2">nav 2</Menu.Item>
-							<Menu.Item key="3">nav 3</Menu.Item>
-						</Menu>
-					)} */}
 				</div>
+				<div className="phone">Горячая линия: 8-800-80-80-800</div>
 				{!isAuth && (
 					<div>
 						<Popover
@@ -67,7 +57,9 @@ class HeaderComponent extends React.PureComponent {
 							trigger="click"
 							content={<LoginForm btnTitle="Зарегистрироваться" action={register} isRegister />}
 						>
-							<Button type="link"> Регистрация</Button>
+							<Button type="link" className="register">
+								Регистрация
+							</Button>
 						</Popover>
 					</div>
 				)}

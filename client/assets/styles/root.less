@@ -10,8 +10,11 @@
 		display: flex;
 	}
 	.logo {
-		width: 65px !important;
 		color: white;
+		width: 215px;
+		@media (max-width: 480px) {
+			width: 125px;
+		}
 		// background-image: url('../img//logo.png');
 	}
 	.root-layout {
@@ -23,9 +26,6 @@
 	}
 	.root-footer {
 		text-align: center;
-	}
-	.logo {
-		width: 100px;
 	}
 }
 
