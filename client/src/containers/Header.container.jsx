@@ -5,6 +5,7 @@ import { registerAction, loginAction } from '../actions/auth.actions'
 import { isAuthSelector } from '../selectors/auth.selector'
 import logo from '../../assets/img/logo.png'
 import { LoginForm } from './LoginForm.component'
+import { FrontUrls } from '../constants/FrontUrls.constant'
 
 import { Layout, Menu, Button, Icon, Popover } from 'antd'
 
@@ -25,7 +26,9 @@ class HeaderComponent extends React.PureComponent {
 		return (
 			<Header className="header">
 				<div className="menu">
-					<img src={logo} className="logo" />
+					<Link to={FrontUrls.cabinet}>
+						<img src={logo} className="logo" />
+					</Link>
 					{isAuth && (
 						<Menu
 							theme="dark"
@@ -41,17 +44,29 @@ class HeaderComponent extends React.PureComponent {
 						</Menu>
 					)}
 				</div>
-				<div>
-					<Popover trigger="click" content={<LoginForm btnTitle="Войти" action={login} />}>
-						<Button type="link"> Вход</Button>
-					</Popover>
-					<Popover
-						trigger="click"
-						content={<LoginForm btnTitle="Зарегистрироваться" action={register} isRegister />}
-					>
-						<Button type="link"> Регистрация</Button>
-					</Popover>
-				</div>
+				{!isAuth && (
+					<div>
+						<Popover
+							placement="bottomLeft"
+							trigger="click"
+							content={<LoginForm btnTitle="Войти" action={login} />}
+						>
+							<Button type="link"> Вход</Button>
+						</Popover>
+						<Popover
+							placement="bottomLeft"
+							trigger="click"
+							content={<LoginForm btnTitle="Зарегистрироваться" action={register} isRegister />}
+						>
+							<Button type="link"> Регистрация</Button>
+						</Popover>
+					</div>
+				)}
+				{isAuth && (
+					<div>
+						<Button type="link"> Выход</Button>
+					</div>
+				)}
 			</Header>
 		)
 	}

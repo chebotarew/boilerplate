@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, Menu, Button, Input } from 'antd'
 import { HeaderContainer } from './Header.container'
 import { MapContainer } from './Map.container'
-import Second from './Second.container'
+import Second from './Cabinet.container'
 
 const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout

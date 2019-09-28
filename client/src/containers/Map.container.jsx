@@ -11,6 +11,7 @@ class SimpleHereMap extends React.Component {
 		super(props)
 		this.platform = null
 		this.map = null
+		this.eventListener
 	}
 	componentDidMount() {
 		this.platform = new window.H.service.Platform({
@@ -36,13 +37,13 @@ class SimpleHereMap extends React.Component {
 		var behavior = new window.H.mapevents.Behavior(events)
 		// eslint-disable-next-line
 		var ui = new window.H.ui.UI.createDefault(this.map, layer)
-		window.addEventListener('resize', () => {
+		this.eventListener = window.addEventListener('resize', () => {
 			this.map.getViewPort().resize()
 		})
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('resize')
+		window.removeEventListener('resize', this.eventListener)
 	}
 
 	render() {
