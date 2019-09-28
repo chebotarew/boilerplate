@@ -16,6 +16,7 @@ export class User extends React.PureComponent {
 					<Col span={24}>{user ? user.lastName : 'Snow'}</Col>
 					<Col span={24}>{user ? user.firstName : 'John'}</Col>
 					<Col span={24}>{user ? user.middleName : 'Willson'}</Col>
+					<Col span={24}>Администратор ресурса</Col>
 				</Col>
 			</div>
 		)

@@ -116,7 +116,7 @@ export class Cabinet extends React.PureComponent {
 							<Tabs.TabPane tab="Аналитика" key="1">
 								<CabinetComponent />
 							</Tabs.TabPane>
-							<Tabs.TabPane tab="Графика" key="2">
+							<Tabs.TabPane tab="Карта ресурсов" key="2">
 								<VisualMapContainer />
 							</Tabs.TabPane>
 						</Tabs>

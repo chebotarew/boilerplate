@@ -12,6 +12,7 @@ class SimpleHereMap extends React.Component {
 		this.platform = null
 		this.map = null
 		this.eventListener
+		this.mapGroup = null
 	}
 	componentDidMount() {
 		this.platform = new window.H.service.Platform({
@@ -29,7 +30,7 @@ class SimpleHereMap extends React.Component {
 
 		this.map = new window.H.Map(container, layer.normal.map, {
 			center: { lat: 55.751574, lng: 37.573856 },
-			zoom: 9,
+			zoom: 12,
 		})
 
 		var events = new window.H.mapevents.MapEvents(this.map)
@@ -40,6 +41,44 @@ class SimpleHereMap extends React.Component {
 		this.eventListener = window.addEventListener('resize', () => {
 			this.map.getViewPort().resize()
 		})
+		this.mapGroup = new window.H.map.Group()
+		const line = new window.H.geo.LineString()
+		line.pushLatLngAlt(55.751574, 37.573856)
+		line.pushLatLngAlt(55.751584, 37.575556)
+		line.pushLatLngAlt(55.757584, 37.581556)
+		line.pushLatLngAlt(55.758584, 37.583556)
+		line.pushLatLngAlt(55.768584, 37.603556)
+		line.pushLatLngAlt(55.759584, 37.608556)
+
+		const line1 = new window.H.geo.LineString()
+		line.pushLatLngAlt(55.251574, 37.473856)
+		line.pushLatLngAlt(55.251584, 37.475556)
+		line.pushLatLngAlt(55.257584, 37.481556)
+		line.pushLatLngAlt(55.258584, 37.483556)
+		line.pushLatLngAlt(55.268584, 37.403556)
+		line.pushLatLngAlt(55.259584, 37.408556)
+
+		this.mapGroup.addObject(
+			new window.H.map.Polyline(line, {
+				style: {
+					fillColor: '#FFFFCC',
+					strokeColor: '#829',
+					lineWidth: 3,
+				},
+			})
+		)
+		// var circle = new H.map.Circle({ lat: 52.51, lng: 13.4 }, 8000)
+		// this.mapGroup.addObject(
+		// 	new window.H.map.Circle(circle, {
+		// 		style: {
+		// 			fillColor: '#cf4e4e',
+		// 			strokeColor: '#829',
+		// 			lineWidth: 3,
+		// 		},
+		// 	})
+		// )
+		// this.map.addObject(circle)
+		this.map.addObject(this.mapGroup)
 	}
 
 	componentWillUnmount() {
@@ -47,7 +86,7 @@ class SimpleHereMap extends React.Component {
 	}
 
 	render() {
-		return <div id="here-map" style={{ width: '100%', height: '100vh', background: 'grey' }} />
+		return <div id="here-map" style={{ width: '90%', height: '250px', background: 'grey' }} />
 	}
 }
 

@@ -21,7 +21,7 @@ class HeaderComponent extends React.PureComponent {
 			registerFormShow: false,
 		}
 	}
-	componentDidUpdate(props) {
+	componentDidUpdate() {
 		if (this.props.user) {
 			history.push(FrontUrls.cabinet)
 		}

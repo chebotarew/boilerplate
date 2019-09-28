@@ -56,44 +56,22 @@ class SimpleHereMap extends React.Component {
 			this.drawLine(this.state.geo)
 			this.success()
 		})
-		// this.mapGroup = new window.H.map.Group()
-		// const line = new window.H.geo.LineString()
-		// line.pushLatLngAlt(55.751574, 37.573856)
-		// line.pushLatLngAlt(55.751584, 37.575556)
-		// line.pushLatLngAlt(55.757584, 37.581556)
-		// line.pushLatLngAlt(55.758584, 37.583556)
-		// this.mapGroup.addObject(
-		// 	new window.H.map.Polyline(line, {
-		// 		style: {
-		// 			fillColor: '#FFFFCC',
-		// 			strokeColor: '#829',
-		// 			lineWidth: 8,
-		// 		},
-		// 	})
-		// )
-		// this.map.addObject(this.mapGroup)
-
-		// this.map.addEventListener('mapviewchange', function() {
-		// 	clearTimeout(window.update_timeout);
-		// 	window.update_timeout = setTimeout(updateMap(), 2000);
-		// });
-		// this.map.addEventListener('tap', function(evt) {
-		// 	const coordinates = this.map.screenToGeo(
-		// 		evt.currentPointer.viewportX,
-		// 		evt.currentPointer.viewportY
-		// 	)
-		// })
-		// this.mapGroup.addObject(
-		// 	new window.H.map.Polygon(line, {
-		// 		style: {
-		// 			fillColor: '#FFFFCC',
-		// 			strokeColor: '#829',
-		// 			lineWidth: 8,
-		// 		},
-		// 	})
-		// )
-
-		// this.drawMarker({ latitude: 55.751574, longitude: 37.573856 })
+		this.mapGroup = new window.H.map.Group()
+		var circle = new H.map.Circle({ lat: 55.751574, lng: 37.573856 }, 200)
+		var circle1 = new H.map.Circle({ lat: 55.754574, lng: 37.578856 }, 200, {
+			style: { fillColor: 'rgba(170, 212, 119, 0.4)', strokeColor: 'rgba(170, 212, 119, 0.4)' },
+		})
+		var circle2 = new H.map.Circle({ lat: 55.753574, lng: 37.579856 }, 200, {
+			style: { fillColor: 'rgba(212, 63, 167, 0.4)', strokeColor: 'rgba(212, 63, 167, 0.4)' },
+		})
+		var circle3 = new H.map.Circle({ lat: 55.751574, lng: 37.572456 }, 200, {
+			style: { fillColor: 'rgba(235, 222, 80, 0.4)', strokeColor: 'rgba(235, 222, 80, 0.4)' },
+		})
+		this.mapGroup.addObject(circle)
+		this.mapGroup.addObject(circle1)
+		this.mapGroup.addObject(circle2)
+		this.mapGroup.addObject(circle3)
+		this.map.addObject(this.mapGroup)
 	}
 
 	drawMarker = data => {

@@ -2,12 +2,57 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as _ from 'lodash'
 import { Link } from 'react-router-dom'
-import { Line } from 'react-chartjs-2'
+import { Line, HorizontalBar } from 'react-chartjs-2'
 import { FrontUrls } from '../constants/FrontUrls.constant'
 import { Row, Col, Menu } from 'antd'
 import { getUserSelector } from '../selectors/auth.selector'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { VisualMapContainer } from './VisualMap.container'
+
+const data3 = {
+	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	datasets: [
+		{
+			label: 'Потребление тепловой энергии',
+			backgroundColor: 'rgba(255,99,132,0.2)',
+			borderColor: 'rgba(255,99,132,1)',
+			borderWidth: 1,
+			hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+			hoverBorderColor: 'rgba(255,99,132,1)',
+			data: [65, 59, 80, 81, 56, 55, 40],
+		},
+	],
+}
+
+const data4 = {
+	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	datasets: [
+		{
+			label: 'My First dataset',
+			backgroundColor: 'rgba(255,99,132,0.2)',
+			borderColor: 'rgba(255,99,132,1)',
+			borderWidth: 1,
+			hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+			hoverBorderColor: 'rgba(255,99,132,1)',
+			data: [11, 23, 12, 54, 56, 55, 40],
+		},
+	],
+}
+
+const data5 = {
+	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	datasets: [
+		{
+			label: 'Потребление электричества',
+			backgroundColor: 'rgba(189, 118, 255, 0.2)',
+			borderColor: 'rgba(189, 118, 255,1)',
+			borderWidth: 1,
+			hoverBackgroundColor: 'rgba(189, 118, 255,0.4)',
+			hoverBorderColor: 'rgba(189, 118, 255,1)',
+			data: [24, 43, 54, 12, 37, 43, 40],
+		},
+	],
+}
 
 export class Cabinet extends React.PureComponent {
 	getGraphicData = data => {
@@ -16,7 +61,7 @@ export class Cabinet extends React.PureComponent {
 			labels: ['', '', '', '', '', '', ''],
 			datasets: [
 				{
-					label: 'Количество сделок',
+					label: 'Количество потребления в тыс. куб. м.',
 					fill: false,
 					borderColor: '#4ac126',
 					borderWidth: 1,
@@ -107,19 +152,48 @@ export class Cabinet extends React.PureComponent {
 		}
 		return (
 			<div>
-				<Line
-					width={100}
-					height={30}
-					data={this.getGraphicData(data)}
-					options={this.getGraphicOptions(data)}
-				/>
-
-				<Line
-					width={100}
-					height={30}
-					data={this.getGraphicData(data1)}
-					options={this.getGraphicOptions(data1)}
-				/>
+				<Row>
+					<Col span={12}>
+						<Col style={{ width: '300px' }}>
+							<Line
+								width={50}
+								height={30}
+								data={this.getGraphicData(data)}
+								options={this.getGraphicOptions(data)}
+							/>
+						</Col>
+						<Col style={{ width: '300px' }}>
+							<HorizontalBar
+								data={data3}
+								width={50}
+								height={200}
+								options={{
+									maintainAspectRatio: false,
+								}}
+							/>
+						</Col>
+					</Col>
+					<Col span={12}>
+						<Col style={{ width: '300px' }}>
+							<Line
+								width={50}
+								height={30}
+								data={this.getGraphicData(data1)}
+								options={this.getGraphicOptions(data1)}
+							/>
+						</Col>
+						<Col style={{ width: '300px' }}>
+							<HorizontalBar
+								data={data5}
+								width={50}
+								height={200}
+								options={{
+									maintainAspectRatio: false,
+								}}
+							/>
+						</Col>
+					</Col>
+				</Row>
 			</div>
 		)
 	}
