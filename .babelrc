@@ -5,6 +5,6 @@
 		["@babel/plugin-proposal-class-properties", { "loose": true }],
 		"@babel/plugin-syntax-dynamic-import",
 		"@babel/proposal-object-rest-spread",
-		
+		"@babel/transform-runtime"
 	]
 }

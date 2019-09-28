@@ -1,18 +1,13 @@
-import { handleActions } from 'redux-actions'
-import { TEST_CONSTANT } from '../constants/ActionTypes.constant'
+import { combineReducers } from 'redux'
+import { reducer as root, initialState as rootState } from './root.reducer'
+import { reducer as auth, initialState as authState } from './auth.reducer'
 
 export const initialState = {
-    count: 1
+	root: rootState,
+	auth: authState,
 }
 
-const reducer = handleActions(
-    {
-        [TEST_CONSTANT]: (state, action) => ({
-            ...state,
-            count: state.count + action.payload
-        })
-    },
-    initialState
-)
-
-export default reducer
+export default combineReducers({
+	root,
+	auth,
+})

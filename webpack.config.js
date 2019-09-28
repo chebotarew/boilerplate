@@ -18,7 +18,7 @@ module.exports = {
 	/* eslint-enable */
 	target: 'web',
 	devServer: {
-		contentBase: path.join(__dirname, 'client/static'),
+		contentBase: path.join(__dirname, 'client/assets'),
 		historyApiFallback: true,
 		port: 3000,
 	},
@@ -42,7 +42,6 @@ module.exports = {
 					{ loader: 'raw-loader' },
 					{
 						loader: 'pug-html-loader',
-						
 					},
 				],
 				exclude: /node_modules/,
@@ -52,24 +51,20 @@ module.exports = {
 				test: /\.less$/,
 				use: [
 					{
-						loader: 'style-loader',
+						loader: 'style-loader', // creates style nodes from JS strings
 					},
 					{
-						loader: 'css-loader',
+						loader: 'css-loader', // translates CSS into CommonJS
 					},
 					{
 						loader: 'less-loader',
 						options: {
-							modifyVars: {
-								'primary-color': '#4ac126',
-								'danger-color': '#ff2432',
-								'border-radius-base': '2px',
-							},
 							javascriptEnabled: true,
-						},
+						}, // compiles Less to CSS
 					},
 				],
 			},
+
 			{
 				test: /\.(css|scss)$/,
 				loaders: ['style-loader', 'raw-loader', 'sass-loader'],
@@ -77,7 +72,7 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpg|jpeg)$/,
-				loaders: ['raw-loader'],
+				loaders: ['file-loader'],
 				include: __dirname,
 			},
 		],

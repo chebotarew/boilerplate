@@ -1,16 +1,7 @@
-import { takeLatest } from 'redux-saga/effects'
-import { TEST_CONSTANT } from '../constants/ActionTypes.constant'
+import { all } from 'redux-saga/effects'
 
-function* testSagas(action) {
-    try {
-        console.log(action)
-    } catch (e) {
-        console.error(e)
-    }
+import { saga as auth } from './auth.saga'
+
+export const sagas = function* sagas() {
+	yield all([auth()])
 }
-
-function* sagas() {
-    yield takeLatest(TEST_CONSTANT, testSagas)
-}
-
-export default sagas

@@ -1,3 +1,3 @@
-export const baseUrl = 'http://hackathon.tw1.ru'
-
-export const urls = {}
+export const urls = {
+	login: '/auth/singUp',
+}
