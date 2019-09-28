@@ -25,7 +25,9 @@ export class StartPageComponent extends React.PureComponent {
 						<MapContainer />
 					</Col>
 					<Col span={24}>
-						<h2 className="main-title">Преимущества сервиса</h2>
+						<h2 className="main-title" style={{ textAlign: 'center' }}>
+							Преимущества сервиса
+						</h2>
 					</Col>
 					<Row type="flex" justify="center">
 						<Col xs={24} xl={7} className="text-column">
