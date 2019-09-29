@@ -21,53 +21,38 @@ import {
 } from 'antd'
 
 export class Cabinet extends React.PureComponent {
-	handleSubmit = e => {
-		e.preventDefault()
-		this.props.form.validateFieldsAndScroll((err, values) => {
-			if (!err) {
-				console.log('Received values of form: ', values)
-			}
-		})
-	}
 	render() {
 		const {
 			user,
 			form: { getFieldDecorator },
+			coordinates,
+			setData,
+			object,
 		} = this.props
-
 		return (
 			<div>
-				<Form onSubmit={this.handleSubmit}>
-					<Form.Item>{getFieldDecorator('name')(<Input placeholder="Наименование" />)}</Form.Item>
+				<Form>
 					<Form.Item>
-						{getFieldDecorator('creted_at')(<DatePicker placeholder="Дата ввода в эксплуатацию" />)}
+						{getFieldDecorator('name', {
+							initialValue: _.get(object, 'name', null),
+						})(<Input placeholder="Наименование" onChange={setData('name')} />)}
 					</Form.Item>
-					<Form.Item>
-						{getFieldDecorator('garantee_to')(<DatePicker placeholder="Гарантийный срок" />)}
-					</Form.Item>
-					<Form.Item>
-						{getFieldDecorator('work_to')(<DatePicker placeholder="Срок службы" />)}
-					</Form.Item>
-					<Form.Item>{getFieldDecorator('material')(<Input placeholder="Материал" />)}</Form.Item>
-					<Form.Item>{getFieldDecorator('length')(<Input placeholder="Длина" />)}</Form.Item>
-					<Form.Item>{getFieldDecorator('width')(<Input placeholder="Ширина" />)}</Form.Item>
-					<Form.Item>
-						{getFieldDecorator('id')(<Input placeholder="Идентификационный номер" />)}
-					</Form.Item>
-					<Form.Item>
-						{getFieldDecorator('type')(
-							<Select placeholder="Тип оборудования">
-								<Select.Option key={1} value="Газовое оборудование">
-									Газовое оборудование
-								</Select.Option>
-								<Select.Option key={2} value="Оборудование водоснабжения">
-									Оборудование водоснабжения
-								</Select.Option>
-								<Select.Option key={3} value="Оборудование теплоснабжения">
-									Оборудование теплоснабжения
-								</Select.Option>
-							</Select>
+					{/* <Form.Item>
+						{getFieldDecorator('creted_at', {
+							initialValue: _.get(object, 'creted_at', null),
+						})(
+							<DatePicker placeholder="Дата ввода в эксплуатацию" onChange={setData('creted_at')} />
 						)}
+					</Form.Item> */}
+					<Form.Item>
+						{getFieldDecorator('material', {
+							initialValue: _.get(object, 'material', null),
+						})(<Input placeholder="Материал" onChange={setData('material')} />)}
+					</Form.Item>
+					<Form.Item>
+						{getFieldDecorator('id', {
+							initialValue: _.get(object, 'id', null),
+						})(<Input placeholder="Идентификационный номер" onChange={setData('id')} />)}
 					</Form.Item>
 				</Form>
 			</div>

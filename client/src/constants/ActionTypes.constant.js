@@ -5,4 +5,7 @@ export const ActionTypes = {
 		register: 'AUTH/REGISTER',
 		setUser: 'AUTH/SET_USER',
 	},
+	object: {
+		add: 'OBJ/ADD',
+	},
 }

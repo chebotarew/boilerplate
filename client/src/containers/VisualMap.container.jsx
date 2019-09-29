@@ -2,86 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal } from 'antd'
 import { AddObjectModalComponent } from './AddObjectModal.component'
+import { addObject } from '../actions/root.actions'
 
-const e = React.createElement
-
-const points = [
-	{ lat: 55.75847673671506, lng: 37.59200221660737 },
-	{ lat: 55.75822922181223, lng: 37.5940246022046 },
-	{ lat: 55.758473718250066, lng: 37.594185534745 },
-	{ lat: 55.758814803312475, lng: 37.594190899163 },
-	{ lat: 55.75912570125726, lng: 37.59393340709809 },
-	{ lat: 55.75927058488974, lng: 37.593080464631356 },
-	{ lat: 55.75985615075357, lng: 37.59304291370515 },
-	{ lat: 55.76015194872359, lng: 37.59192711475495 },
-	{ lat: 55.759572175285946, lng: 37.59070569761141 },
-	{ lat: 55.75881757297028, lng: 37.5893163133417 },
-	{ lat: 55.75787580879802, lng: 37.58954161889895 },
-	{ lat: 55.75774299407218, lng: 37.59120995290621 },
-	{ lat: 55.758482524861364, lng: 37.59199315793856 },
-]
-const points2 = [
-	{ lat: 55.75964113894182, lng: 37.59013563723266 },
-	{ lat: 55.759013311945935, lng: 37.590103450724484 },
-	{ lat: 55.758802021741445, lng: 37.5907900962323 },
-	{ lat: 55.75819832913511, lng: 37.591326538035275 },
-	{ lat: 55.757787812824915, lng: 37.59139091105163 },
-	{ lat: 55.75746784858662, lng: 37.59143382639587 },
-	{ lat: 55.757322958256765, lng: 37.591079774805905 },
-	{ lat: 55.75722032728075, lng: 37.59042531580627 },
-	{ lat: 55.75725051288995, lng: 37.58965283960998 },
-	{ lat: 55.75742558896269, lng: 37.58900910944641 },
-	{ lat: 55.75758859011703, lng: 37.5882688197583 },
-	{ lat: 55.75770933127359, lng: 37.58746415705383 },
-	{ lat: 55.75773347946005, lng: 37.586573663660886 },
-	{ lat: 55.75799910852426, lng: 37.586101594874265 },
-	{ lat: 55.75845791810107, lng: 37.58617669672668 },
-	{ lat: 55.759013311945935, lng: 37.58621961207092 },
-	{ lat: 55.75938759464097, lng: 37.58603722185791 },
-	{ lat: 55.759749800280424, lng: 37.58628398508728 },
-	{ lat: 55.759979195445425, lng: 37.58701354593933 },
-	{ lat: 55.760021452302304, lng: 37.58772164911926 },
-	{ lat: 55.76005767242894, lng: 37.58888036341369 },
-	{ lat: 55.760124075907015, lng: 37.58912712664306 },
-	{ lat: 55.760045599057136, lng: 37.58973867029846 },
-	{ lat: 55.7598644980316, lng: 37.58992106051147 },
-	{ lat: 55.75964113894182, lng: 37.59013563723266 },
-]
-
-const points3 = [
-	{ lat: 55.757129837238004, lng: 37.5938583052457 },
-	{ lat: 55.75751621216808, lng: 37.59376174572117 },
-	{ lat: 55.75811991533329, lng: 37.59386903408176 },
-	{ lat: 55.75843383728601, lng: 37.593343321114844 },
-	{ lat: 55.758614944955475, lng: 37.592560116082495 },
-	{ lat: 55.75873568293453, lng: 37.591852012902564 },
-	{ lat: 55.758687387787774, lng: 37.591079536706275 },
-	{ lat: 55.75849420660261, lng: 37.59061819675571 },
-	{ lat: 55.75821650697249, lng: 37.59041434887058 },
-	{ lat: 55.75804143445026, lng: 37.590081754952735 },
-	{ lat: 55.757757694555565, lng: 37.5894809401334 },
-	{ lat: 55.75752828632296, lng: 37.588869396478 },
-	{ lat: 55.757280765400665, lng: 37.588794294625586 },
-	{ lat: 55.7569789084913, lng: 37.58901960018284 },
-	{ lat: 55.75676157006993, lng: 37.589577499657935 },
-	{ lat: 55.756459709142156, lng: 37.590307060509986 },
-	{ lat: 55.75618803230961, lng: 37.59070402744419 },
-	{ lat: 55.75621218143802, lng: 37.591315571099585 },
-	{ lat: 55.75633896411687, lng: 37.59224897983677 },
-	{ lat: 55.75636915040824, lng: 37.59292489650852 },
-	{ lat: 55.756610639898106, lng: 37.59365445736057 },
-	{ lat: 55.75704531721182, lng: 37.593836847573584 },
-	{ lat: 55.757141911512505, lng: 37.593847576409644 },
-]
-
-const linePoints = [
-	{ lat: 55.75801721953088, lng: 37.58504993084088 },
-	{ lat: 55.7572505128899, lng: 37.587184969216736 },
-	{ lat: 55.75679168910852, lng: 37.58831149700299 },
-	{ lat: 55.75632078540431, lng: 37.58935219410077 },
-	{ lat: 55.75610344331551, lng: 37.58984572055951 },
-	{ lat: 55.75543329758394, lng: 37.591422859460266 },
-]
 class SimpleHereMap extends React.Component {
 	constructor(props) {
 		super(props)
@@ -92,9 +14,12 @@ class SimpleHereMap extends React.Component {
 		this.state = {
 			geo: [],
 			showAddEl: false,
+			pointData: null,
 		}
 	}
 	componentDidMount() {
+		const { poligons } = this.props
+
 		this.platform = new window.H.service.Platform({
 			app_id: 'UdRH6PlISTlADYsW6mzl',
 			app_code: 'lfrrTheP9nBedeJyy1NtIA',
@@ -127,52 +52,110 @@ class SimpleHereMap extends React.Component {
 				evt.currentPointer.viewportX,
 				evt.currentPointer.viewportY
 			)
-			this.setState(state => ({
-				geo: [...state.geo, coordinates],
-			}))
-			this.drawLine(this.state.geo)
-			this.success()
+			// let data = evt.target.getData()
+
+			// console.log(data)
+			this.success(coordinates)
+			// this.setState(state => ({
+			// 	geo: [...state.geo, coordinates],
+			// }))
+			// this.drawLine(this.state.geo)
 			// console.log(this.state.geo)
 		})
 
-		const mapGroup = new window.H.map.Group()
-		const line = new H.geo.LineString()
-		linePoints.forEach(coordinate => {
-			line.pushLatLngAlt(coordinate.lat, coordinate.lng)
+		// var bubble;
+
+		// function openSearchBubble(position, text){
+		// if(!bubble){
+		// bubble = new H.ui.InfoBubble(
+		// position,
+		// {content: text});
+		// ui.addBubble(bubble);
+		// } else {
+		// bubble.setPosition(position);
+		// bubble.setContent(text);
+		// bubble.open();
+		// }
+		// }
+
+		var bubble
+		this.map.addEventListener('pointermove', evt => {
+			if (evt.target instanceof H.map.Marker || evt.target instanceof H.map.DomMarker) {
+				function openSearchBubble() {
+					let position = evt.target.getPosition()
+					let data = evt.target.getData()
+
+					if (!bubble) {
+						bubble = new H.ui.InfoBubble(position, {
+							content: `<div> Наименование: ${data.name}</div> <div>Материал: ${data.material}</div> <div>Номер: ${data.id}</div>`,
+						})
+						ui.addBubble(bubble)
+					} else {
+						bubble.setPosition(position)
+						bubble.setContent(
+							`<div> Наименование: ${data.name}</div> <div>Материал: ${data.material}</div> <div>Номер: ${data.id}</div>`
+						)
+						bubble.open()
+					}
+				}
+				openSearchBubble()
+			} else {
+				if (!bubble) {
+					return null
+				}
+				bubble.close()
+			}
 		})
-		const polyline = new window.H.map.Polyline(line, {
-			style: {
-				lineWidth: 2,
-				strokeColor: '#18de29',
-			},
-		})
-		mapGroup.addObject(polyline)
+
+		// const mapGroup = new window.H.map.Group()
+		// const line = new H.geo.LineString()
+
+		// linePoints.forEach(coordinate => {
+		// 	line.pushLatLngAlt(coordinate.lat, coordinate.lng)
+		// })
+		// const polyline = new window.H.map.Polyline(line, {
+		// 	style: {
+		// 		lineWidth: 2,
+		// 		strokeColor: '#18de29',
+		// 	},
+		// })
+		// mapGroup.addObject(polyline)
 
 		this.mapGroup = new window.H.map.Group()
-		this.map.addObject(mapGroup)
+		this.mapGroup.addEventListener('tap', function(evt) {
+			// let data = evt.target.getData()
+			console.log(evt)
+		})
+		// this.map.addObject(mapGroup)
+		poligons.forEach(poligon => {
+			this.addPolygon(poligon.points, poligon.color)
+		})
+	}
 
-		this.addPolygon(points, '#' + Math.floor(Math.random() * 16777215).toString(16) + '85')
-		this.addPolygon(points2, '#' + Math.floor(Math.random() * 16777215).toString(16) + '85')
-		this.addPolygon(points3, '#' + Math.floor(Math.random() * 16777215).toString(16) + '85')
+	componentDidUpdate(prevProps) {
+		const { markers } = this.props
+		this.props.markers.forEach(marker => {
+			this.drawMarker(marker)
+		})
 	}
 
 	drawMarker = data => {
-		const svgMarkup = `<svg width="18" height="18"
-        xmlns="http://www.w3.org/2000/svg">
-        <circle cx="8" cy="8" r="8"
-            fill="#ddd" stroke="#4527a0" stroke-width="1"  />
-        </svg>`,
+		const svgMarkup = `<svg width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M7 20.065C2.333 13.975 0 9.642 0 7.065C-1.36979e-08 6.14575 0.18106 5.2355 0.532843 4.38622C0.884626 3.53694 1.40024 2.76527 2.05025 2.11526C2.70026 1.46525 3.47194 0.949629 4.32122 0.597846C5.17049 0.246063 6.08075 0.0650024 7 0.0650024C7.91925 0.0650024 8.82951 0.246063 9.67878 0.597846C10.5281 0.949629 11.2997 1.46525 11.9497 2.11526C12.5998 2.76527 13.1154 3.53694 13.4672 4.38622C13.8189 5.2355 14 6.14575 14 7.065C14 9.642 11.667 13.975 7 20.065ZM7 11.065C8.06087 11.065 9.07828 10.6436 9.82843 9.89343C10.5786 9.14328 11 8.12587 11 7.065C11 6.00414 10.5786 4.98672 9.82843 4.23658C9.07828 3.48643 8.06087 3.065 7 3.065C5.93913 3.065 4.92172 3.48643 4.17157 4.23658C3.42143 4.98672 3 6.00414 3 7.065C3 8.12587 3.42143 9.14328 4.17157 9.89343C4.92172 10.6436 5.93913 11.065 7 11.065V11.065Z" fill="#208B78" fill-opacity="0.98"/>
+		</svg>
+		`,
 			dotIcon = new window.H.map.Icon(svgMarkup, { anchor: { x: 8, y: 8 } })
 
 		const marker = new window.H.map.Marker(
 			{
-				lat: data.latitude,
-				lng: data.longitude,
+				lat: data.coordinates.lat,
+				lng: data.coordinates.lng,
 			},
 			{ icon: dotIcon }
 		)
-		marker.setData({ data: data })
+		marker.setData(data)
 		this.mapGroup.addObject(marker)
+		this.map.addObject(this.mapGroup)
 	}
 
 	drawLine = data => {
@@ -217,6 +200,12 @@ class SimpleHereMap extends React.Component {
 		this.map.addObject(this.mapGroup)
 	}
 
+	onClickOk = () => {
+		const { pointData, coordinates } = this.state
+		const { addMarker } = this.props
+		addMarker({ ...pointData, coordinates })
+	}
+
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.eventListener)
 	}
@@ -230,10 +219,16 @@ class SimpleHereMap extends React.Component {
 	showModal = () => this.setState({ showAddEl: true })
 	hideModal = () => this.setState({ showAddEl: false })
 
-	success = () => {
+	setData = key => e => {
+		this.setState({ pointData: { ...this.state.pointData, [key]: e.target.value } })
+	}
+
+	success = coordinates => {
+		this.setState({ coordinates })
 		Modal.success({
 			title: 'Добавьте объект',
-			content: <AddObjectModalComponent />,
+			content: <AddObjectModalComponent coordinates={coordinates} setData={this.setData} />,
+			onOk: this.onClickOk,
 		})
 	}
 
@@ -253,11 +248,16 @@ class SimpleHereMap extends React.Component {
 	}
 }
 
-const mapStateToProps = (state /*, ownProps*/) => {
-	return {}
+const mapStateToProps = state => {
+	return {
+		poligons: state.root.poligons,
+		markers: state.root.markers,
+	}
 }
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+	addMarker: data => dispatch(addObject(data)),
+})
 
 export const VisualMapContainer = connect(
 	mapStateToProps,

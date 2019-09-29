@@ -19,3 +19,8 @@ export const sertUserAction = payload => ({
 	type: ActionTypes.auth.setUser,
 	payload,
 })
+
+export const addObject = payload => ({
+	type: ActionTypes.object.add,
+	payload,
+})
