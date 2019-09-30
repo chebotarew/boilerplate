@@ -133,10 +133,24 @@ class SimpleHereMap extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { markers } = this.props
-		this.props.markers.forEach(marker => {
-			this.drawMarker(marker)
-		})
+		// this.props.markers.forEach(marker => {
+		// 	this.drawMarker(marker)
+		// })
+		// if (this.props.marlers && this.props.marlers.length > 1) {
+		// 	const mapGroup = new window.H.map.Group()
+		// 	const line = new H.geo.LineString()
+		// 	this.props.markers.forEach(marker => {
+		// 		line.pushLatLngAlt(marker.coordinates)
+		// 	})
+		// 	const polyline = new window.H.map.Polyline(line, {
+		// 		style: {
+		// 			lineWidth: 2,
+		// 			strokeColor: '#18de29',
+		// 		},
+		// 	})
+		// 	mapGroup.addObject(polyline)
+		// 	map.addObject(mapGroup)
+		// }
 	}
 
 	drawMarker = data => {
@@ -202,8 +216,28 @@ class SimpleHereMap extends React.Component {
 
 	onClickOk = () => {
 		const { pointData, coordinates } = this.state
-		const { addMarker } = this.props
+		const { addMarker, markers } = this.props
+		const newMarkers = [...markers, { ...pointData, coordinates }]
 		addMarker({ ...pointData, coordinates })
+		newMarkers.forEach(marker => {
+			this.drawMarker(marker)
+		})
+		if (this.props.marlers && this.props.marlers.length > 1) {
+			const mapGroup = new window.H.map.Group()
+			const line = new H.geo.LineString()
+
+			newMarkers.forEach(marker => {
+				line.pushLatLngAlt(marker.coordinates)
+			})
+			const polyline = new window.H.map.Polyline(line, {
+				style: {
+					lineWidth: 2,
+					strokeColor: '#18de29',
+				},
+			})
+			mapGroup.addObject(polyline)
+			map.addObject(mapGroup)
+		}
 	}
 
 	componentWillUnmount() {

@@ -82,7 +82,7 @@ const poligons = [
 export const initialState = {
 	objects: [],
 	poligons,
-	markers: [],
+	markers: localStorage.getItem('markers') || [],
 }
 
 const red = handleActions(
@@ -95,6 +95,7 @@ const red = handleActions(
 			const newState = { ...state }
 			const markers = newState.markers || []
 			markers.push(action.payload)
+			localStorage.setItem('markers', markers)
 			return newState
 		},
 	},
