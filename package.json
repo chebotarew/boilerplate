@@ -68,7 +68,7 @@
 		"helmet": "^3.20.1",
 		"history": "^4.10.1",
 		"jwt-simple": "^0.5.5",
-		"lodash": "^4.17.15",
+		"lodash": "^4.17.21",
 		"lusca": "^1.6.1",
 		"mongoose": "^5.3.14",
 		"morgan": "^1.9.1",
