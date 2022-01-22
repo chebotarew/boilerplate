@@ -38,7 +38,7 @@
 		"less": "^3.10.3",
 		"less-loader": "^5.0.0",
 		"mocha": "^5.2.0",
-		"node-fetch": "^2.3.0",
+		"node-fetch": "^3.1.1",
 		"nodemon": "^1.19.1",
 		"pug": "^2.0.4",
 		"pug-html-loader": "^1.1.5",
